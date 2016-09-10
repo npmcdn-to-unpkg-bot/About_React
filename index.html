@@ -1,0 +1,67 @@
+<DocTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<title>index</title>
+	<script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="main"></div> 
+     <script type="text/babel">
+	    var ClickEvent = React.createClass({
+		  handleClick:function(event){
+		     var tipE = this.refs.tip;
+			 if(tipE.style.display =="none"){
+			    tipE.style.display = "block"
+			 } else {
+			     tipE.style.display = "none"
+			 }
+		     event.stopPropagation();
+			 event.preventDefault();
+		  } ,
+		   render:function(){
+		     return(
+			   <div>
+			     <button onClick={this.handleClick}>display|block</button>
+				 <span ref="tip" > test </span> 
+			   </div>
+			 ) 
+		   }
+		});
+		
+		var InputEvent = React.createClass({
+		  getInitialState:function(){
+		     return {
+			   input:''
+			 }
+		  },
+		  changehandle:function(event){
+		     
+			 this.setState({
+			   input:event.target.value
+			 });
+			 
+		     event.stopPropagation();
+			 event.preventDefault();
+		  },
+		  render:function(){
+		    return(
+			  <div>
+			    <input type="text" onChange={this.changehandle}/>
+				<span> {this.state.input}</span>
+			  </div>
+			)
+		  }
+		});
+		
+		ReactDOM.render(
+		   <div>
+		     <ClickEvent/>
+			 <InputEvent/>
+		   </div>
+		   ,document.getElementById('main'));
+	 </script>
+  </body>
+</html>
